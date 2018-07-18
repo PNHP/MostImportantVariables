@@ -24,3 +24,4 @@ $RECYCLE.BIN/
 *.sqlite
 boxplot_MAbutterfly.png
 *.png
+.Rproj.user
