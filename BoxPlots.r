@@ -2,7 +2,7 @@
 
 library(RSQLite)
 #  open up a "channel" to the Access DB
-databasename <- "E:/SDM/Shared/MostImportantVariables/MostImportantVar.sqlite" 
+databasename <- "E:/SDM/Shared/MostImportantVariables/MostImportantVar_Aquuatic.sqlite" 
 db <- dbConnect(SQLite(), dbname = databasename)
 
 #write importance values
@@ -24,7 +24,7 @@ importance$varFullName <- factor(importance$varFullName,levels=means$varFullName
 #extract the number of models that used each variable
 sampSize <- table(importance$varCode)
 
-png(filename="E:/SDM/Shared/MostImportantVariables/boxplot.png", width=10, height=10, units='in', res=600)
+png(filename="E:/SDM/Shared/MostImportantVariables/boxplot_aquatic.png", width=10, height=10, units='in', res=600)
 boxplot(impRank ~ varFullName, data=importance,
         xlab = "Importance Rank", 
         #ylab = "Environmental Variable",  
@@ -34,7 +34,7 @@ boxplot(impRank ~ varFullName, data=importance,
           las=2,                  #make the category names horizontal
           par(
            mar=c(1,1,1,1), #increase margins on the left
-           ps=8 ,                 #font point size
+           ps=6,                 #font point size
            pin=c(5,9)            #plot dimensions width,height (might need to resize window manually, or use (5,6)
           )#,
           #mgp = c(5,1,5)

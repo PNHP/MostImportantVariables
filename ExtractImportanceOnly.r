@@ -7,16 +7,16 @@ library(RSQLite)
 library(randomForest)
 
 # First, change to the directory
-setwd("E:/SDM/MA_Butterfly/outputs")
+setwd("E:/SDM/Aquatic2/outputs")
 
 #get a list of what's in the directory
-d <- dir(pattern = "Rdata")
+d <- dir(pattern="Rdata", recursive=TRUE, include.dirs=TRUE)
 
 #i <- 1
 #loop through everything in the dir
 for (i in 1:length(d)){
   #for (i in 1:46){
-  fileName <- dir(pattern = "Rdata")[[i]]
+  fileName <- dir(pattern="Rdata", recursive=TRUE, include.dirs=TRUE)[[i]]
   # Bring the two files into R
   load(fileName)
   impRank <- rank(-EnvVars$impVal)   #reverse order by ranking the negative
@@ -24,7 +24,6 @@ for (i in 1:length(d)){
   #get number of varibles used in each forest
   used <- varUsed(rf.full)
   names(used) <- names(EnvVars)
-
   f.importance <- data.frame( 
                             "Species" = ElementNames$SciName,
                             #"SppCode" = abbr,
@@ -36,9 +35,8 @@ for (i in 1:length(d)){
                             "dtmDate" = format(Sys.time(), "%Y %m %d"),
                             "dtmTime" = format(Sys.time(), "%X")
                             )
-
   #  open up a "channel" to the Access DB
-  databasename <- "E:/SDM/Shared/MostImportantVariables/MostImportantVar.sqlite" 
+  databasename <- "E:/SDM/Shared/MostImportantVariables/MostImportantVar_Aquuatic.sqlite" 
   db <- dbConnect(SQLite(), dbname = databasename)
   #write importance values
   dbWriteTable(db, "tblImportance", f.importance, append=TRUE)
@@ -47,8 +45,7 @@ for (i in 1:length(d)){
   #remind me what I just ran -- doesn't work, need print?
   ElementNames[[1]]
   #clear the decks for the next run
-  rm(list=ls(all=TRUE))
-
+  #rm(list=ls(all=TRUE))
 #end the loop
 }
 
