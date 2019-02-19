@@ -26,3 +26,10 @@ boxplot_MAbutterfly.png
 *.png
 .Rproj.user
 .Rproj
+*.RData
+.Rhistory
+*.RData
+.Rhistory
+*.csv
+*.Rhistory
+.RData
