@@ -33,3 +33,5 @@ boxplot_MAbutterfly.png
 *.csv
 *.Rhistory
 .RData
+*.RData
+.Rhistory
